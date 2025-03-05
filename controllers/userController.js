@@ -1,142 +1,139 @@
-const User = require("../models/userModel");
+const PhoneUser = require("../models/userModel");
 const ErrorHandler = require("../utils/ErrorHandling");
 const tryCatch = require("../middleware/tryCatch");
 const sentToken = require("../utils/sendTokens");
-
-// User Register..
-exports.register = tryCatch(async (req, res, next) => {
-  const {
-    name,
-    email,
-    phone,
-    password,
-    gender,
-    height,
-    bloodGroup,
-    address,
-    profilePicture,
-    walletBalance,
-  } = req.body;
-
-  // Create User
-  const user = await User.create({
-    name,
-    email,
-    phone,
-    password,
-    gender,
-    height,
-    bloodGroup,
-    address,
-    profilePicture,
-    walletBalance,
-  });
-
-  // Generate JWT and Reference Tokens
-  const jwtToken = user.getJWTToken();
-  // const referenceToken = user.getReferenceToken();
-
-  await user.save();
-
-  sentToken(user, 200, res);
- });
+const { sendOTP, verifyOTP } = require("../utils/sendOTP");
 
 // Login user by Mobile Number
+// exports.login = tryCatch(async (req, res, next) => {
+//   const { phone } = req.body;
+
+//   if (!phone) {
+//     return next(new ErrorHandler("Phone number is required", 400));
+//   }
+
+//   // Check if the user exists
+//   let user = await PhoneUser.findOne({ phone });
+
+//   if (!user) {
+//     // New user: Generate and send OTP
+//     const generatedOTP = sendOTP(phone);
+//     return res.status(200).json({
+//       success: true,
+//       message: "OTP sent to your phone number",
+//       otp: generatedOTP, // Include for testing only; remove in production
+//     });
+//   }
+
+//   // Existing user: Direct login
+//   sentToken(user, 200, res);
+// });
+
 exports.login = tryCatch(async (req, res, next) => {
   const { phone } = req.body;
 
   if (!phone) {
-    return res.status(400).json({
-      success: false,
-      message: "Phone number is required.",
-    });
+    return next(new ErrorHandler("Phone number is required", 400));
   }
 
-  // Find user or create a new one if not found
-  let user = await User.findOne({ phone });
+  // Check if user already exists
+  let user = await PhoneUser.findOne({ phone });
 
+  if (user) {
+    // Existing user: Direct login
+    return sentToken(user, 200, res);
+  }
+
+  // New user: Generate and send OTP
+  const generatedOTP = sendOTP(phone);
+
+  // Store phone number in a session/cookie for verification step
+  res.cookie("phoneSession", phone, {
+    httpOnly: true,
+    expires: new Date(Date.now() + 5 * 60 * 1000), // Expires in 5 minutes
+  });
+
+  return res.status(200).json({
+    success: true,
+    message: "OTP sent to your phone number",
+    otp: generatedOTP, // For testing; remove in production
+  });
+});
+
+// Verify OTP
+// exports.verifyOtp = tryCatch(async (req, res, next) => {
+//   const { phone, otp } = req.body;
+
+//   if (!phone || !otp) {
+//     return next(new ErrorHandler("Phone number and OTP are required", 400));
+//   }
+
+//   const isValidOTP = verifyOTP(phone, otp);
+//   if (!isValidOTP) {
+//     return next(new ErrorHandler("Invalid or expired OTP", 400));
+//   }
+//   let user = await PhoneUser.findOne({ phone });
+//   if (!user) {
+//     user = await PhoneUser.create({ phone });
+//   }
+
+//   // Send token after successful verification
+//   sentToken(user, 200, res);
+// });
+
+exports.verifyOtp = tryCatch(async (req, res, next) => {
+  const { otp } = req.body;
+
+  // Retrieve phone number from session/cookie
+  const phone = req.cookies.phoneSession;
+
+  if (!phone) {
+    return next(new ErrorHandler("Session expired, please request OTP again", 400));
+  }
+
+  if (!otp) {
+    return next(new ErrorHandler("OTP is required", 400));
+  }
+
+  // Verify OTP
+  const isValidOTP = verifyOTP(phone, otp);
+  if (!isValidOTP) {
+    return next(new ErrorHandler("Invalid or expired OTP", 400));
+  }
+
+  // Check if user exists, otherwise create a new one
+  let user = await PhoneUser.findOne({ phone });
   if (!user) {
-    user = await User.create({ phone });
+    user = await PhoneUser.create({ phone });
   }
 
-  // if (!user) {
-  //   return next(new ErrorHandler("Phone Not found", 401));
-  // }
+  // Clear session after successful login
+  res.clearCookie("phoneSession");
 
-  // Save the user to ensure the reference token is stored
-  await user.save();
-
+  // Send token after successful verification
   sentToken(user, 200, res);
 });
 
 // Logout..
 exports.logout = tryCatch(async (req, res, next) => {
-  res.cookie("token",null,{
-    expires:new Date(Date.now()),
-    httpOnly:true
-  })
+  // Clear the token cookie
+  res.cookie("token", null, {
+    expires: new Date(Date.now()),
+    httpOnly: true,
+  });
 
-  res.status(200).json({
-    success:true,
-    message:"LogOut"
-  })
-});
-
-// Get User Details By ID..
-exports.getUserDetails = tryCatch(async (req, res, next) => {
-  const user = await User.findById(req.params.id);
+  // Ensure `req.user` contains user details
+  const user = req.user;
   if (!user) {
-    return next(new ErrorHandler("No User Found", 400));
+    return next(new ErrorHandler("Phone number is required", 404));
   }
-  res.status(200).json({
-    success: true,
-    user,
-  });
-});
-
-// get All Users..
-exports.getAllUser = tryCatch(async (req, res, next) => {
-  const allUsers = await User.find();
-  if (!allUsers) {
-    return next(new ErrorHandler("No Users Found", 400));
-  }
-  res.status(200).json({
-    success: true,
-    allUsers,
-  });
-});
-
-// update User By ID..
-exports.updateUser = tryCatch(async (req, res, next) => {
-  let updateUserProfile = await User.findById(req.params.id);
-  if (!updateUserProfile) {
-    return next(new ErrorHandler("User Not Found"));
-  }
-  updateUserProfile = await User.findByIdAndUpdate(req.params.id, req.body, {
-    new: true,
-    runValidators: true,
-    useFindAndModify: false,
-  });
 
   res.status(200).json({
     success: true,
-    message: "Profile updated successfully.",
-    user: updateUserProfile,
-  });
-});
-
-// delete User By ID..
-exports.deleteUser = tryCatch(async (req, res, next) => {
-  const { id } = req.params;
-  const user = await User.findById(id);
-  if (!user) {
-    return next(
-      new ErrorHandler(`User does not exits with Id: ${req.params.id}`)
-    );
-  }
-  await User.deleteOne({ _id: id });
-  res.status(200).json({
-    success: true,
-    message: "User deleted Succesfuly",
+    message: "Logout Successfully",
+    user: {
+      id: user._id, // User ID
+      phone: user.phone, // Phone number
+    },
   });
 });
