@@ -1,4 +1,4 @@
-const { RtcTokenBuilder, RtcRole } = require("agora-access-token");
+const { RtcTokenBuilder, RtcRole } = require("agora-token");
 const ErrorHandler = require("../utils/ErrorHandling");
 const tryCatch = require("../middleware/tryCatch");
 const mongoose = require("mongoose");

@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const bcrypt = require("bcryptjs");
+const bcrypt = require('bcryptjs');z
 const jwt = require("jsonwebtoken");
 const crypto = require("crypto");
 const validator = require("validator");
@@ -31,6 +31,23 @@ const phoneUserSchema = new mongoose.Schema({
   referenceToken: {
     type: String,
     default: null,
+  },
+  loginHistory: [{
+    loginTime: Date,
+    logoutTime: Date,
+    sessionDuration: { 
+      type: {
+        minutes: Number,
+        seconds: Number
+      },
+      required: false,
+      default: { minutes: 0, seconds: 0 } 
+    }
+  }],
+  lastActive:Date,
+  isActive:{
+    type:Boolean,
+    default:false,
   },
 });
 

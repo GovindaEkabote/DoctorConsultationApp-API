@@ -2,6 +2,7 @@ const Appointment = require("../models/appointmentsModel");
 const Doctor = require("../models/doctorModel");
 const ErrorHandler = require("../utils/ErrorHandling");
 const tryCatch = require("../middleware/tryCatch");
+const agoraService = require("../utils/agoraService");
 
 // Book Appointment..
 exports.bookAppointment = tryCatch(async (req, res, next) => {
@@ -28,7 +29,8 @@ exports.bookAppointment = tryCatch(async (req, res, next) => {
   // Find the available slot for the given date and time slot
   const availableSlot = doctor.availableSlots.find(
     (slot) =>
-      slot.date.toISOString().split("T")[0] === new Date(date).toISOString().split("T")[0] &&
+      slot.date.toISOString().split("T")[0] ===
+        new Date(date).toISOString().split("T")[0] &&
       slot.timeSlots.includes(timeSlot)
   );
 
@@ -83,7 +85,9 @@ exports.bookAppointment = tryCatch(async (req, res, next) => {
 // cancle cancelAppointment
 exports.cancelAppointment = tryCatch(async (req, res, next) => {
   const { appointmentId } = req.params;
-  const appointment = await Appointment.findById(appointmentId).populate("doctor");
+  const appointment = await Appointment.findById(appointmentId).populate(
+    "doctor"
+  );
 
   if (!appointment) {
     return next(new ErrorHandler("Appointment Not Found", 400));
@@ -142,7 +146,6 @@ exports.cancelAppointment = tryCatch(async (req, res, next) => {
     appointment,
   });
 });
-
 
 // fetch all appointments for a patient..
 exports.getAppointmentsForPatient = tryCatch(async (req, res, next) => {
@@ -345,7 +348,6 @@ exports.checkDoctorAvailability = tryCatch(async (req, res, next) => {
   // const { date, timeSlots } = req.query;
   const { date, timeSlots } = req.body;
 
-
   // Validate required inputs
   if (!doctorId || !date || !timeSlots) {
     return next(
@@ -372,7 +374,9 @@ exports.checkDoctorAvailability = tryCatch(async (req, res, next) => {
 
   // Find the slot for the requested date
   const slotForDate = doctor.availableSlots.find(
-    (s) => s.date.toISOString().split("T")[0] === formattedDate.toISOString().split("T")[0]
+    (s) =>
+      s.date.toISOString().split("T")[0] ===
+      formattedDate.toISOString().split("T")[0]
   );
 
   if (!slotForDate) {
@@ -395,18 +399,14 @@ exports.checkDoctorAvailability = tryCatch(async (req, res, next) => {
   });
 });
 
-
 // check doctors available for a specific date or time slot..
 exports.checkDoctorsAvailability = tryCatch(async (req, res, next) => {
   // const { date, timeSlots } = req.query;
   const { date, timeSlots } = req.body;
 
-
   // Validate required inputs
   if (!date || !timeSlots) {
-    return next(
-      new ErrorHandler("Date and time slots are required.", 400)
-    );
+    return next(new ErrorHandler("Date and time slots are required.", 400));
   }
 
   const formattedDate = new Date(date);
@@ -415,7 +415,9 @@ exports.checkDoctorsAvailability = tryCatch(async (req, res, next) => {
   const timeSlotRequested = timeSlots.trim();
 
   // Find all doctors who have slots available for the specified date
-  const doctors = await Doctor.find({ "availableSlots.date": { $eq: formattedDate } });
+  const doctors = await Doctor.find({
+    "availableSlots.date": { $eq: formattedDate },
+  });
 
   if (doctors.length === 0) {
     return res.status(200).json({
@@ -432,7 +434,9 @@ exports.checkDoctorsAvailability = tryCatch(async (req, res, next) => {
   for (const doctor of doctors) {
     // Find the slot for the requested date
     const slotForDate = doctor.availableSlots.find(
-      (s) => s.date.toISOString().split("T")[0] === formattedDate.toISOString().split("T")[0]
+      (s) =>
+        s.date.toISOString().split("T")[0] ===
+        formattedDate.toISOString().split("T")[0]
     );
 
     // If slot for date exists, check if the requested time slot is available
@@ -463,4 +467,135 @@ exports.checkDoctorsAvailability = tryCatch(async (req, res, next) => {
   });
 });
 
+exports.getDoctorAvailableDates = tryCatch(async (req, res, next) => {
+  const { doctorId } = req.params;
+  if (!doctorId) {
+    return next(new ErrorHandler("Doctor ID is required", 400));
+  }
+  const doctor = await Doctor.findById(doctorId).select("availableSlots");
+  if (!doctor) {
+    return next(new ErrorHandler("Doctor not found", 404));
+  }
+  if (!doctor.availableSlots || !Array.isArray(doctor.availableSlots)) {
+    return res.status(200).json({
+      success: true,
+      highlightedDates: [],
+    });
+  }
+  const availableDates = doctor.availableSlots.map((slot) => ({
+    date: slot.date.toISOString().split("T")[0],
+  }));
+  const uniqueDates = [
+    ...new Map(availableDates.map((item) => [item.date, item])).values(),
+  ];
+  res.status(200).json({
+    success: true,
+    AvailableDates: uniqueDates,
+  });
+});
 
+exports.initiateCall = tryCatch(async (req, res, next) => {
+  const { appointmentId } = req.params;
+  const userId = req.user?._id?.toString();
+
+  // Validate appointment exists and user is authorized
+  const appointment = await Appointment.findById(appointmentId)
+    .populate('doctor patient');
+  
+  if (!appointment) {
+    return next(new ErrorHandler("Appointment not found", 404));
+  }
+
+  const isAuthorized = [
+    appointment.doctor._id.toString(),
+    appointment.patient._id.toString()
+  ].includes(userId);
+
+  if (!isAuthorized) {
+    return next(new ErrorHandler("Unauthorized to start this call", 403));
+  }
+
+  const channelName = `appointment-${appointmentId}`;
+  
+  // Get or generate tokens (valid for 1 hour)
+  const doctorToken = agoraService.getValidToken(
+    channelName, 
+    appointment.doctor._id.toString()
+  );
+  const patientToken = agoraService.getValidToken(
+    channelName, 
+    appointment.patient._id.toString()
+  );
+
+  // Update appointment in database
+  await Appointment.findByIdAndUpdate(appointmentId, {
+    $set: {
+      agoraChannelName: channelName,
+      agoraTokens: {
+        doctor: {
+          token: doctorToken.token,
+          issuedAt: doctorToken.generatedAt,
+          expiresAt: doctorToken.expiresAt
+        },
+        patient: {
+          token: patientToken.token,
+          issuedAt: patientToken.generatedAt,
+          expiresAt: patientToken.expiresAt
+        }
+      },
+      callStatus: "In Progress",
+      callStartTime: new Date()
+    }
+  });
+
+  res.status(200).json({
+    success: true,
+    channelName,
+    tokens: {
+      doctor: doctorToken.token,
+      patient: patientToken.token
+    },
+    expiresAt: doctorToken.expiresAt.toISOString(), // Return expiration time
+    appId: process.env.AGORA_APP_ID
+  });
+});
+
+exports.endCall = tryCatch(async (req, res, next) => {
+  const { appointmentId } = req.params;
+  const userId = req.user?._id?.toString();
+
+  const appointment = await Appointment.findById(appointmentId);
+  
+  // Validate appointment exists and user is authorized
+  if (!appointment) {
+    return next(new ErrorHandler("Appointment not found", 404));
+  }
+
+  const isAuthorized = [
+    appointment.doctor.toString(),
+    appointment.patient.toString()
+  ].includes(userId);
+
+  if (!isAuthorized) {
+    return next(new ErrorHandler("Unauthorized to end this call", 403));
+  }
+
+  const endTime = new Date();
+  const duration = Math.floor((endTime - appointment.callStartTime) / 1000);
+
+  // Update call status but keep tokens valid until expiration
+  await Appointment.findByIdAndUpdate(appointmentId, {
+    $set: {
+      callStatus: "Completed",
+      callEndTime: endTime,
+      callDuration: duration
+    }
+  });
+
+  res.status(200).json({
+    success: true,
+    duration,
+    endTime: endTime.toISOString(),
+    tokenStillValidUntil: appointment.agoraTokens?.doctor?.expiresAt?.toISOString()
+  });
+});

@@ -2,7 +2,7 @@ const express = require("express");
 const { IsAuthenticatedUser } = require("../middleware/auth");
 const {
   bookAppointment,
-  cancelAppointment ,
+  cancelAppointment,
   getAppointmentsForPatient,
   getAppointmentsForDoctors,
   rescheduleAppointment,
@@ -11,6 +11,9 @@ const {
   manageDailyAppointments,
   checkDoctorAvailability,
   checkDoctorsAvailability,
+  getDoctorAvailableDates,
+  initiateCall,
+  endCall,
 } = require("../controllers/appointmentController");
 const router = express.Router();
 
@@ -20,7 +23,7 @@ router
 
 router
   .route("/delete/cancle-appointment/:appointmentId")
-  .delete(IsAuthenticatedUser, cancelAppointment );
+  .delete(IsAuthenticatedUser, cancelAppointment);
 
 router
   .route("/get/appointments-patient/:patientId")
@@ -46,8 +49,18 @@ router
 //   .route("/get/daily-appointments/:docId")
 //   .get(IsAuthenticatedUser, manageDailyAppointments);
 
-router.route("/get/check-availability/:doctorId").get(IsAuthenticatedUser,checkDoctorAvailability)
+router
+  .route("/get/check-availability/:doctorId")
+  .get(IsAuthenticatedUser, checkDoctorAvailability);
 
-router.route("/get/check-availability").get(IsAuthenticatedUser,checkDoctorsAvailability)
+router
+  .route("/get/check-availability")
+  .get(IsAuthenticatedUser, checkDoctorsAvailability);
+router
+  .route("/get/availability/:doctorId")
+  .get(IsAuthenticatedUser, getDoctorAvailableDates);
+
+router.route('/post/:appointmentId/start-call').post(IsAuthenticatedUser,initiateCall)
+router.route('/post/:appointmentId/end-call').post(IsAuthenticatedUser,endCall)
 
 module.exports = router;

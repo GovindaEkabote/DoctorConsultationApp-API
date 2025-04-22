@@ -210,6 +210,3 @@ exports.clearCart = tryCatch(async (req, res, next) => {
     message:"cart cleared Successfully..."
   })
 });
-
-
-// 
