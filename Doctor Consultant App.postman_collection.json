@@ -1,0 +1,1978 @@
+{
+	"info": {
+		"_postman_id": "0864463d-9ee6-49af-a94d-f064783fe648",
+		"name": "Doctor Consultant App",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30812459"
+	},
+	"item": [
+		{
+			"name": "Authentication Folder",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"phone\": \"1231231235\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/post/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"post",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/get/logout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"get",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OTP Verification",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n  \"otp\": \"1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/verify-otp",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"verify-otp"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User analytics",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/v1/get/analytics",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"get",
+								"analytics"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "reset-analytics",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/v1/get/reset-analytics",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"get",
+								"reset-analytics"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "File Uploading API's",
+			"item": [
+				{
+					"name": "Upload Files -- User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "files",
+									"type": "file",
+									"src": "/D:/01_INTERVIEW/.Net.pdf"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/post/upload",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"post",
+								"upload"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete files",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/delete/file/5800eebe66f50aa55ce1d06d.pdf",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"delete",
+								"file",
+								"5800eebe66f50aa55ce1d06d.pdf"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get user uploaded file",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/v1/get/files/677c0608203c17449ff1df78",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"get",
+								"files",
+								"677c0608203c17449ff1df78"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all use uploaded files",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/v1/get/all-files",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"get",
+								"all-files"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User Folder",
+			"item": [
+				{
+					"name": "Register User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"personalInformation\": {\r\n        \"fullName\": \"Vijea Talpati\",\r\n        \"email\": \"vijay.talpati@example.com\",\r\n        \"emergencyContactNumber\": 7854129856,\r\n        \"address\": {\r\n            \"flat\": \"MIG 67\",\r\n            \"buildingName\": \"Shrikrush Vasahat\",\r\n            \"addressLine\": \"Solapur\",\r\n            \"pincode\": \"413005\"\r\n        }\r\n    },\r\n    \"gender\": \"Male\",\r\n    \"height\": {\r\n        \"feet\": 5,\r\n        \"inches\": 5\r\n    },\r\n    \"bloodGroup\": \"A+\",\r\n    \"birthday\": {\r\n        \"date\": 5,\r\n        \"month\": 7,\r\n        \"year\": 2020\r\n    },\r\n    \"medicalHistory\": {\r\n        \"allergies\":false,\r\n        \"recentOperations\":false,\r\n        \"exercise\":false,\r\n        \"diet\":\"Strict diet\",\r\n        \"drinkingHabit\":\"I don't drink\",\r\n        \"smokingHabit\":\"No, I don't smoke\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/post/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"post",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All User Information -- Doctor",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/v1/get/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"get",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User information By it's ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/v1/get/user-profile/67ac5a4b0582f953be685092",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"get",
+								"user-profile",
+								"67ac5a4b0582f953be685092"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete user Profile By Using it's ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/delete/delete-profile/67875f443c5ca5e052a682ce",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"delete",
+								"delete-profile",
+								"67875f443c5ca5e052a682ce"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User Profile By Using it's ID",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"personalInformation\": {\r\n    \"fullName\": \"sagar Balaji Ekabote\",\r\n    \"email\": \"jane.doe@example.com\",\r\n    \"emergencyContactNumber\": 9876543210,\r\n    \"address\": {\r\n      \"flat\": \"25A\",\r\n      \"buildingName\": \"Greenwood Towers\",\r\n      \"addressLine\": \"456 Market Street\",\r\n      \"pincode\": \"560002\"\r\n    }\r\n  },\r\n  \"gender\": \"Male\",\r\n  \"height\": {\r\n    \"feet\": 5,\r\n    \"inches\": 5\r\n  },\r\n  \"bloodGroup\": \"A+\",\r\n  \"birthday\": {\r\n    \"date\": 15,\r\n    \"month\": 8,\r\n    \"year\": 1990\r\n  },\r\n  \"medicalHistory\": {\r\n    \"allergies\": true,\r\n    \"recentOperations\": false,\r\n    \"exercise\": true,\r\n    \"diet\": \"Strict diet\",\r\n    \"drinkingHabit\": \"I don't drink\",\r\n    \"smokingHabit\": \"No, I don't smoke\"\r\n  }\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/put/update-user/677ae834ff63b4b90c933e61",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"put",
+								"update-user",
+								"677ae834ff63b4b90c933e61"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Doctor Folder",
+			"item": [
+				{
+					"name": "Doctor Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Dr. Jhon Lee\",\r\n  \"image\": \"https://example.com/doctor-image.jpg\",\r\n  \"speciality\": \"Dermatologist\",\r\n  \"education\": \"MS, MD\",\r\n  \"experience\": \"10 years\",\r\n  \"about\": \"Expert in treating skin disorders with modern and effective treatments.\",\r\n  \"latitude\": 17.677243500413407,\r\n  \"longitude\": 75.89917656723219,\r\n  \"fees\": {\r\n    \"audio\": 300,\r\n    \"video\": 500\r\n  },\r\n  \"durations\": {\r\n    \"audio\": 15,\r\n    \"video\": 30\r\n  }\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/post/doctor-register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"post",
+								"doctor-register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Doctor Profile By ID",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"experience\":15\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/put/update-doctor/677ba864f2bd96d9270cb5d8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"put",
+								"update-doctor",
+								"677ba864f2bd96d9270cb5d8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Doctors By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/v1/get/doctor/67ac5b1b0582f953be6850a1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"get",
+								"doctor",
+								"67ac5b1b0582f953be6850a1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Doctors",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/get/doctors",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"get",
+								"doctors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Doctor By ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/v1/delete/doctor/677bc10a8b92a10a24493eb3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"delete",
+								"doctor",
+								"677bc10a8b92a10a24493eb3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create and Update Review",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"doctorId\": \"67ac5b1b0582f953be6850a1\",\r\n    \"rating\": 4.5,\r\n    \"comment\": \"Excellent doctor! Very professional.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/put/reviews",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"put",
+								"reviews"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Reviews",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/v1/get/reviews/67ac5b1b0582f953be6850a1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"get",
+								"reviews",
+								"67ac5b1b0582f953be6850a1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Review By Id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/v1/delete/review?doctorID=677bc10a8b92a10a24493eb3&id=677bc2def4bb4fbf19d04e7d",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"delete",
+								"review"
+							],
+							"query": [
+								{
+									"key": "doctorID",
+									"value": "677bc10a8b92a10a24493eb3",
+									"description": "// Doctor ID"
+								},
+								{
+									"key": "id",
+									"value": "677bc2def4bb4fbf19d04e7d",
+									"description": "Review ID"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "To fetch a list of doctors available for a specific date or time.",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/get/check-availability?date=2025-01-22&timeSlots=2:00PM - 2:30PM",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"get",
+								"check-availability"
+							],
+							"query": [
+								{
+									"key": "date",
+									"value": "2025-01-22"
+								},
+								{
+									"key": "timeSlots",
+									"value": "2:00PM - 2:30PM"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Doctor create-availability (date and Time)",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"doctorId\": \"67ac5b1b0582f953be6850a1\",\r\n  \"availableSlots\": [\r\n    {\r\n      \"date\": \"2026-01-18\",\r\n      \"timeSlots\": [ \"10:00 AM - 11:00 AM\"]\r\n    },\r\n    {\r\n      \"date\": \"2025-01-22\",\r\n      \"timeSlots\": [\"2:00PM - 2:30PM\", \"3:00 PM - 3:30 PM\"]\r\n    }\r\n  ]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/post/create-availability",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"post",
+								"create-availability"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Search Sort Filter Pagignation - API Features",
+			"item": [
+				{
+					"name": "Filter Sort and Pagignation",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/v1/get/doctors?speciality=Neurologist",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"get",
+								"doctors"
+							],
+							"query": [
+								{
+									"key": "speciality",
+									"value": "Neurologist"
+								},
+								{
+									"key": "fees[gt]",
+									"value": "500",
+									"disabled": true
+								},
+								{
+									"key": "fees[lt]",
+									"value": "1500",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "2",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Doctors By It's name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/v1/get/doctors?keyword=lee",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"get",
+								"doctors"
+							],
+							"query": [
+								{
+									"key": "keyword",
+									"value": "lee"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Appointments",
+			"item": [
+				{
+					"name": "create-appointment",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"doctorId\": \"67ac5b1b0582f953be6850a1\",\r\n    \"patientId\": \"677b8dc8876aa05eb932e355\",\r\n    \"date\": \"2026-01-18\",\r\n    \"timeSlot\": \"10:00 AM - 11:00 AM\",\r\n    \"appointmentType\": \"Audio\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/post/create-appointment",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"post",
+								"create-appointment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cancle-appointment",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"appointment\": {\r\n        \"doctor\": \"67ac5b1b0582f953be6850a1\",\r\n        \"patient\": \"677b8dc8876aa05eb932e355\",\r\n        \"date\": \"2026-01-18\",\r\n        \"timeSlot\": \"10:00 AM - 11:00 AM\",\r\n        \"appointmentType\": \"Audio\",\r\n        \"doctorFees\": 100,\r\n    \"status\": \"Cancelled\"\r\n    }\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/delete/cancle-appointment/67dbc0952f76f83129e250ab",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"delete",
+								"cancle-appointment",
+								"67dbc0952f76f83129e250ab"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "fetch all appointments for a patient",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/v1/get/appointments-patient/67ac5a4b0582f953be685092",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"get",
+								"appointments-patient",
+								"67ac5a4b0582f953be685092"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "To fetch all appointments for a doctor",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/v1/get/appointments-doctor/67ac5b1b0582f953be6850a1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"get",
+								"appointments-doctor",
+								"67ac5b1b0582f953be6850a1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reschedule Appointment",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"newDate\": \"2026-01-18\",\r\n        \"newTimeSlot\": \"2:30 PM - 3:00 PM\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/put/reschedule-appointment/67dce684f3814b711287a808",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"put",
+								"reschedule-appointment",
+								"67dce684f3814b711287a808"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update Appointment status",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"status\": \"Completed\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/put/update-status/67dce684f3814b711287a808",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"put",
+								"update-status",
+								"67dce684f3814b711287a808"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Total Appointments of Doctors Based on Doctor ID",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/v1/get/total-patients/67ac5b1b0582f953be6850a1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"get",
+								"total-patients",
+								"67ac5b1b0582f953be6850a1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:4000/api/v1/get/daily-appointments/677fff89da40a77cd3fee5c9",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/v1/get/daily-appointments/677fff89da40a77cd3fee5c9",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"get",
+								"daily-appointments",
+								"677fff89da40a77cd3fee5c9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all availability doctor list",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"date\": \"2025-01-22\",\r\n  \"timeSlots\": \"2:00PM - 2:30PM\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/get/check-availability",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"get",
+								"check-availability"
+							],
+							"query": [
+								{
+									"key": "date",
+									"value": "2025-01-21",
+									"disabled": true
+								},
+								{
+									"key": "timeSlots",
+									"value": "9:00%20AM%20-%209:30%20AM",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Available doctor based on Doctor Id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/get/availability/678e423d16f2d5dfab3e5647",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"get",
+								"availability",
+								"678e423d16f2d5dfab3e5647"
+							],
+							"query": [
+								{
+									"key": "date",
+									"value": "2025-01-21",
+									"disabled": true
+								},
+								{
+									"key": "timeSlots",
+									"value": "9:00%20AM%20-%209:30%20AM",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "check-availability by 678e423d16f2d5dfab3e5647",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"date\": \"2025-01-22\",\r\n  \"timeSlots\": \"2:00PM - 2:30PM\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/get/check-availability/678e423d16f2d5dfab3e5647",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"get",
+								"check-availability",
+								"678e423d16f2d5dfab3e5647"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:4000/api/v1/post/Appointment ID/end-call -- Agora token generate",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/v1/post/67dce684f3814b711287a808/end-call",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"post",
+								"67dce684f3814b711287a808",
+								"end-call"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:4000/api/v1/post/Appointment ID/start-call  ---  Agora token ",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/v1/post/67dce684f3814b711287a808/start-call",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"post",
+								"67dce684f3814b711287a808",
+								"start-call"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Product Folder",
+			"item": [
+				{
+					"name": "Add New Product",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n  {\r\n      \"name\": \"Vitamin C Serum\",\r\n  \"price\": 120,\r\n  \"discount\": 10,\r\n  \"description\": \"A serum for glowing skin with vitamin C.\",\r\n    \"deliveryOptions\": {\r\n      \"standard\": {\r\n        \"time\": \"5-7 days\",\r\n        \"price\": 0\r\n      },\r\n      \"express\": {\r\n        \"time\": \"1-2 days\",\r\n        \"price\": 15\r\n      }\r\n    },\r\n    \"selectedDelivery\": \"standard\",\r\n    \"category\": { \"main\": \"Cosmetics\", \"sub\": \"Skin Care\" },\r\n    \"stock\": 20,\r\n   \"images\": \"https://example.com/heart-medicine.jpg\"\r\n  }\r\n// //   {\r\n// //     \"name\": \"Ibuprofen\",\r\n// //     \"price\": 40,\r\n// //     \"salePrice\": 36,\r\n// //     \"description\": \"Anti-inflammatory painkiller for headaches, muscle pain, and arthritis\",\r\n// //     \"deliveryOptions\": {\r\n// //       \"standard\": {\r\n// //         \"time\": \"5-7 days\",\r\n// //         \"price\": 0\r\n// //       },\r\n// //       \"express\": {\r\n// //         \"time\": \"1-2 days\",\r\n// //         \"price\": 15\r\n// //       }\r\n// //     },\r\n// //     \"selectedDelivery\": \"express\",\r\n// //     \"category\": {\r\n// //       \"main\": \"Medicine\",\r\n// //       \"sub\": \"Pain Reliever\"\r\n// //     },\r\n// //     \"stock\": 150,\r\n// //     \"images\": \"https://example.com/ibuprofen.jpg\"\r\n// //   },\r\n// //   {\r\n// //     \"name\": \"Cough Syrup\",\r\n// //     \"price\": 80,\r\n// //     \"salePrice\": 72,\r\n// //     \"description\": \"Relieves cough and soothes the throat\",\r\n// //     \"deliveryOptions\": {\r\n// //       \"standard\": {\r\n// //         \"time\": \"5-7 days\",\r\n// //         \"price\": 5\r\n// //       },\r\n// //       \"express\": {\r\n// //         \"time\": \"1-2 days\",\r\n// //         \"price\": 20\r\n// //       }\r\n// //     },\r\n// //     \"selectedDelivery\": \"standard\",\r\n// //     \"category\": {\r\n// //       \"main\": \"Medicine\",\r\n// //       \"sub\": \"Cough\"\r\n// //     },\r\n// //     \"stock\": 100,\r\n// //     \"images\": \"https://example.com/cough-syrup.jpg\"\r\n// //   },\r\n// //   {\r\n// //     \"name\": \"Vitamin C Tablets\",\r\n// //     \"price\": 120,\r\n// //     \"salePrice\": 100,\r\n// //     \"description\": \"Boosts immunity and promotes healthy skin\",\r\n// //     \"deliveryOptions\": {\r\n// //       \"standard\": {\r\n// //         \"time\": \"5-7 days\",\r\n// //         \"price\": 0\r\n// //       },\r\n// //       \"express\": {\r\n// //         \"time\": \"1-2 days\",\r\n// //         \"price\": 15\r\n// //       }\r\n// //     },\r\n// //     \"selectedDelivery\": \"express\",\r\n// //     \"category\": {\r\n// //       \"main\": \"Supplements\",\r\n// //       \"sub\": \"Vitamins\"\r\n// //     },\r\n// //     \"stock\": 300,\r\n// //     \"images\": \"https://example.com/vitamin-c.jpg\"\r\n// //   },\r\n// //   {\r\n// //     \"name\": \"Antibiotic Ointment\",\r\n// //     \"price\": 60,\r\n// //     \"salePrice\": 55,\r\n// //     \"description\": \"Treats minor wounds, cuts, and infections\",\r\n// //     \"deliveryOptions\": {\r\n// //       \"standard\": {\r\n// //         \"time\": \"5-7 days\",\r\n// //         \"price\": 0\r\n// //       },\r\n// //       \"express\": {\r\n// //         \"time\": \"1-2 days\",\r\n// //         \"price\": 10\r\n// //       }\r\n// //     },\r\n// //     \"selectedDelivery\": \"standard\",\r\n// //     \"category\": {\r\n// //       \"main\": \"Medicine\",\r\n// //       \"sub\": \"First Aid\"\r\n// //     },\r\n// //     \"stock\": 120,\r\n// //     \"images\": \"https://example.com/antibiotic-ointment.jpg\"\r\n// //   },\r\n// //   {\r\n// //     \"name\": \"Calcium Tablets\",\r\n// //     \"price\": 90,\r\n// //     \"salePrice\": 80,\r\n// //     \"description\": \"Supports bone health and strength\",\r\n// //     \"deliveryOptions\": {\r\n// //       \"standard\": {\r\n// //         \"time\": \"5-7 days\",\r\n// //         \"price\": 0\r\n// //       },\r\n// //       \"express\": {\r\n// //         \"time\": \"1-2 days\",\r\n// //         \"price\": 12\r\n// //       }\r\n// //     },\r\n// //     \"selectedDelivery\": \"express\",\r\n// //     \"category\": {\r\n// //       \"main\": \"Supplements\",\r\n// //       \"sub\": \"Bone Health\"\r\n// //     },\r\n// //     \"stock\": 250,\r\n// //     \"images\": \"https://example.com/calcium-tablets.jpg\"\r\n// //   },\r\n// //   {\r\n// //     \"name\": \"Allergy Relief\",\r\n// //     \"price\": 50,\r\n// //     \"salePrice\": 45,\r\n// //     \"description\": \"Relieves symptoms of allergy such as sneezing and runny nose\",\r\n// //     \"deliveryOptions\": {\r\n// //       \"standard\": {\r\n// //         \"time\": \"5-7 days\",\r\n// //         \"price\": 0\r\n// //       },\r\n// //       \"express\": {\r\n// //         \"time\": \"1-2 days\",\r\n// //         \"price\": 10\r\n// //       }\r\n// //     },\r\n// //     \"selectedDelivery\": \"standard\",\r\n// //     \"category\": {\r\n// //       \"main\": \"Medicine\",\r\n// //       \"sub\": \"Allergy\"\r\n// //     },\r\n// //     \"stock\": 180,\r\n// //     \"images\": \"https://example.com/allergy-relief.jpg\"\r\n// //   },\r\n// //   {\r\n// //     \"name\": \"Cosmetic Cream\",\r\n// //     \"price\": 300,\r\n// //     \"salePrice\": 270,\r\n// //     \"description\": \"Moisturizes and nourishes the skin\",\r\n// //     \"deliveryOptions\": {\r\n// //       \"standard\": {\r\n// //         \"time\": \"5-7 days\",\r\n// //         \"price\": 0\r\n// //       },\r\n// //       \"express\": {\r\n// //         \"time\": \"1-2 days\",\r\n// //         \"price\": 20\r\n// //       }\r\n// //     },\r\n// //     \"selectedDelivery\": \"express\",\r\n// //     \"category\": {\r\n// //       \"main\": \"Cosmetics\",\r\n// //       \"sub\": \"Skin Care\"\r\n// //     },\r\n// //     \"stock\": 100,\r\n// //     \"images\": \"https://example.com/cosmetic-cream.jpg\"\r\n// //   },\r\n// //   {\r\n// //     \"name\": \"Energy Drink Powder\",\r\n// //     \"price\": 200,\r\n// //     \"salePrice\": 180,\r\n// //     \"description\": \"Replenishes energy and hydrates the body\",\r\n// //     \"deliveryOptions\": {\r\n// //       \"standard\": {\r\n// //         \"time\": \"5-7 days\",\r\n// //         \"price\": 0\r\n// //       },\r\n// //       \"express\": {\r\n// //         \"time\": \"1-2 days\",\r\n// //         \"price\": 15\r\n// //       }\r\n// //     },\r\n// //     \"selectedDelivery\": \"standard\",\r\n// //     \"category\": {\r\n// //       \"main\": \"Supplements\",\r\n// //       \"sub\": \"Energy\"\r\n// //     },\r\n// //     \"stock\": 500,\r\n// //     \"images\": \"https://example.com/energy-drink.jpg\"\r\n// //   },\r\n// //   {\r\n// //     \"name\": \"Herbal Tea\",\r\n// //     \"price\": 150,\r\n// //     \"salePrice\": 140,\r\n// //     \"description\": \"Promotes relaxation and improves digestion\",\r\n// //     \"deliveryOptions\": {\r\n// //       \"standard\": {\r\n// //         \"time\": \"5-7 days\",\r\n// //         \"price\": 5\r\n// //       },\r\n// //       \"express\": {\r\n// //         \"time\": \"1-2 days\",\r\n// //         \"price\": 20\r\n// //       }\r\n// //     },\r\n// //     \"selectedDelivery\": \"express\",\r\n// //     \"category\": {\r\n// //       \"main\": \"Wellness\",\r\n// //       \"sub\": \"Tea\"\r\n// //     },\r\n// //     \"stock\": 200,\r\n// //     \"images\": \"https://example.com/herbal-tea.jpg\"\r\n// //   }\r\n]\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/post/add-product",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"post",
+								"add-product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Products",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/v1/get/products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"get",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Products By Id",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/v1/get/product/679217e2f340dfd3b0369fe9",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"get",
+								"product",
+								"679217e2f340dfd3b0369fe9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Product By Id",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"discount\": 100\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/put/update-product/679217e2f340dfd3b0369fe9",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"put",
+								"update-product",
+								"679217e2f340dfd3b0369fe9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete Product By Id",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/v1/delete/delete-product/6792180cf340dfd3b0369feb",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"delete",
+								"delete-product",
+								"6792180cf340dfd3b0369feb"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create New Review or update the review.",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"rating\": 4.5,\r\n    \"comment\": \"Excellent Product.\",\r\n    \"productId\": \"67ac29ea94001e584ca9fa7d\"    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/put/review-product",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"put",
+								"review-product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Product Review",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/v1/get/product-review?id=679217e2f340dfd3b0369fe9",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"get",
+								"product-review"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "679217e2f340dfd3b0369fe9"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Product  Review",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/v1/delete/product-review?productID=67ac29ea94001e584ca9fa7d&id=67ac75c0e5aad6014d78acdc",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"delete",
+								"product-review"
+							],
+							"query": [
+								{
+									"key": "productID",
+									"value": "67ac29ea94001e584ca9fa7d"
+								},
+								{
+									"key": "id",
+									"value": "67ac75c0e5aad6014d78acdc"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Product Like and Unlike",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"productId\":\"67ac29ea94001e584ca9fa7d\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/post/like-unlike",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"post",
+								"like-unlike"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Order Folder",
+			"item": [
+				{
+					"name": "create new-order By user",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"address\": \"67ac5a870582f953be685097\",\r\n  \"orderItems\": [\r\n    {\r\n      \"product\": \"67ac1827dd2614321a7df262\",\r\n      \"name\": \"Paracetamol\",\r\n      \"price\": 100,\r\n      \"quantity\": 1,\r\n       \"image\": \"public/uploads/f7f844f6dce8c5c9c8b973f0.png\"\r\n    }\r\n  ],\r\n  \"paymentInfo\": {\r\n    \"id\": \"pay_123456\",\r\n    \"status\": \"Paid\"\r\n  },\r\n  \"deliveryOption\": \"express\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/post/new-order",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"post",
+								"new-order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin get user order by order id",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/v1/get/order/67ac7795e5aad6014d78acf6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"get",
+								"order",
+								"67ac7795e5aad6014d78acf6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User get it all orders and it total price",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/get/myorders",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"get",
+								"myorders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin gets all orders",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/v1/get/orders",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"get",
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin update the delivery status",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\":\"Delivered\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/put/update/67ac7795e5aad6014d78acf6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"put",
+								"update",
+								"67ac7795e5aad6014d78acf6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin get Income Statistics (Monthly, Yearly, Daily)",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/v1/get/income?year=2025&month=2&day=12",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"get",
+								"income"
+							],
+							"query": [
+								{
+									"key": "year",
+									"value": "2025"
+								},
+								{
+									"key": "month",
+									"value": "2"
+								},
+								{
+									"key": "day",
+									"value": "12"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User Get its Order History ",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/v1/get/orders/history/categories?year=2025&month=02",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"get",
+								"orders",
+								"history",
+								"categories"
+							],
+							"query": [
+								{
+									"key": "year",
+									"value": "2025"
+								},
+								{
+									"key": "month",
+									"value": "02"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User can cancel his order By Order Id",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/v1/delete/cancle-order/67ac7795e5aad6014d78acf6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"delete",
+								"cancle-order",
+								"67ac7795e5aad6014d78acf6"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Add To Cart",
+			"item": [
+				{
+					"name": "Add products into cart",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"productId\":\"67ac29ea94001e584ca9fa7d\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/post/add-to-cart",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"post",
+								"add-to-cart"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update-product-quantity  {Increase or Decrease} Product Quantity.",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n     \"productId\":\"67a1b7aa06b2e650abd6cdcb\",\r\n     \"action\":\"increase\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/put/update-product-quantity",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"put",
+								"update-product-quantity"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User All Product from it's cart",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/v1/get/my-cart",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"get",
+								"my-cart"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "remove-product from cart",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/v1/delete/remove-product/67a1b7aa06b2e650abd6cdcb",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"delete",
+								"remove-product",
+								"67a1b7aa06b2e650abd6cdcb"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Clear Cart",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/v1/delete/clear",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"delete",
+								"clear"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Agora Token Generation",
+			"item": [
+				{
+					"name": "Agora Token Generation",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"channelName\": \"doctor_consultation\",\r\n    \"role\": \"publisher\",\r\n    \"uid\":123,\r\n    \"tokenType\": \"rtc\",\r\n    \"expiryTime\": 3600\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/post/generate-token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"post",
+								"generate-token"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
