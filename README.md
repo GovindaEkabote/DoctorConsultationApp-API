@@ -124,7 +124,11 @@ Integrated Razorpay for:
   }
 }
 
+```
+
 📁 Project Structure
+
+
 doctor-consultant-app/
 │
 ├── src/
@@ -200,12 +204,14 @@ Payment APIs
 Create Razorpay Order
 Verify Payment
 Payment History
+
 📹 Agora Video Call Flow
 Patient books appointment
 Doctor accepts appointment
 Backend generates Agora token
 Both users join secure video room
 Consultation ends after session completion
+
 🔒 Security Best Practices
 Password Hashing with bcryptjs
 JWT Access Protection
@@ -214,6 +220,7 @@ Input Validation
 API Error Handling
 Protected Routes
 Payment Signature Verification
+
 🚀 Future Enhancements
 AI Chatbot Support
 E-Prescription PDF Generation
@@ -222,21 +229,19 @@ Real-time Chat
 Admin Dashboard
 Multi-language Support
 Email & SMS Notifications
-🧪 Testing
 
+🧪 Testing
 Recommended Tools:
 
 Postman
 Thunder Client
-👨‍💻 Author
 
+👨‍💻 Author
 Govinda Ekbote
 
 📄 License
-
 ISC License
 
 ⭐ Support
-
 If you like this project, give it a ⭐ on GitHub.
 
